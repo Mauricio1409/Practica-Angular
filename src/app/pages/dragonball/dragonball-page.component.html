@@ -1,0 +1,50 @@
+<h1>Dragon ball Page</h1>
+<hr>
+
+<section class="row">
+  <div class="col-12 col-sm-6">
+
+    <h3>Agregar : {{name()}}</h3>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Nombre"
+      [value]="name()"
+      (input)="name.set(txtName.value)"
+      #txtName
+    >
+
+    <input
+     type="number"
+     class="form-control mt-2"
+     placeholder="Poder"
+     [value]="power()"
+     (input)="power.set(+txtPower.value)"
+     #txtPower
+     >
+    <button class="mt-2 btn btn-primary"
+    (click)="AgregarPersonaje()"
+    >
+      Agregar</button>
+
+  </div>
+
+  <div class="row col-12 col-sm-6">
+    <h3>Listado</h3>
+    <ul>
+      @for ( personaje of personajes(); track personaje.id ; let idx = $index) {
+        @if (personaje.power > 50) {
+          <li>
+
+            <span>{{idx +1}} - {{ personaje.name }}</span>
+            <strong [class.text-danger]="personaje.power > 90"> ({{ personaje.power }})</strong>
+          </li>
+        }
+
+      }
+    </ul>
+
+
+  </div>
+
+</section>
